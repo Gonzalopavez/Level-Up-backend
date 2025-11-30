@@ -49,7 +49,7 @@ public class AuthController {
         }
     }
 
-    // --- 2. ENDPOINT DE LOGIN (¡ESTE FALTABA!) ---
+    // --- 2. ENDPOINT DE LOGIN 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> credenciales) {
         String email = credenciales.get("email");

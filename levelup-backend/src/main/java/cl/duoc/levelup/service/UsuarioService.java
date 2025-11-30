@@ -95,7 +95,7 @@ public class UsuarioService {
     usuario.setRegion(datos.getRegion());
     usuario.setComuna(datos.getComuna());
     usuario.setCodigoReferido(datos.getCodigoReferido());
-    usuario.setTipo(datos.getTipo()); // 🔥 También puede cambiar el rol aquí
+    usuario.setTipo(datos.getTipo()); //También puede cambiar el rol aquí
 
     return usuarioRepository.save(usuario);
 }

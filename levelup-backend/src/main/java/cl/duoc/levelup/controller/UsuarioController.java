@@ -36,7 +36,7 @@ public class UsuarioController {
             return ResponseEntity.status(404).body("Usuario no encontrado.");
         }
 
-        // ❗ PROTEGER ADMIN PRINCIPAL
+        // PROTEGER ADMIN PRINCIPAL
         if (usuario.getCorreo().equalsIgnoreCase("admin@duoc.cl")) {
             return ResponseEntity.status(400).body("❌ No puedes eliminar al administrador principal.");
         }
@@ -56,7 +56,7 @@ public class UsuarioController {
             return ResponseEntity.status(404).body("Usuario no encontrado.");
         }
 
-        // ❗ NO PERMITIR CAMBIAR ROL DEL ADMIN PRINCIPAL
+        //NO PERMITIR CAMBIAR ROL DEL ADMIN PRINCIPAL
         if (usuario.getCorreo().equalsIgnoreCase("admin@duoc.cl")) {
             return ResponseEntity.status(400).body("❌ No puedes modificar el rol del administrador principal.");
         }
@@ -80,7 +80,7 @@ public ResponseEntity<?> updateUser(
         return ResponseEntity.status(404).body("Usuario no encontrado.");
     }
 
-    // ❗ Proteger admin principal
+    // Proteger admin principal
     if (usuario.getCorreo().equalsIgnoreCase("admin@duoc.cl")) {
         return ResponseEntity.status(400).body("❌ No puedes modificar al administrador principal.");
     }

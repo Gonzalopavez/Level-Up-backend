@@ -18,7 +18,7 @@ public class Orden {
     private Long total;
 
     // Relación: Una orden la hace UN usuario (cliente)
-    // Usamos "cliente" para que coincida con tu React
+    // Usamos "cliente" para que coincida con React
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario cliente;
