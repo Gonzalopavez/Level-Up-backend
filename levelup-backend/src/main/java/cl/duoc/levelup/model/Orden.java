@@ -15,7 +15,7 @@ public class Orden {
     private Long id;
 
     private String fecha;
-    private Long total;
+    private Double total;
 
     // Relación: Una orden la hace UN usuario (cliente)
     // Usamos "cliente" para que coincida con React

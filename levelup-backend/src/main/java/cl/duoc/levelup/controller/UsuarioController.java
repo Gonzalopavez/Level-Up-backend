@@ -3,6 +3,7 @@ package cl.duoc.levelup.controller;
 import cl.duoc.levelup.model.Usuario;
 import cl.duoc.levelup.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,21 +30,17 @@ public class UsuarioController {
     // (Protección del admin principal)
     // ===============================
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id) {
+public ResponseEntity<?> delete(@PathVariable Long id) {
 
-        Usuario usuario = usuarioService.findById(id);
-        if (usuario == null) {
-            return ResponseEntity.status(404).body("Usuario no encontrado.");
-        }
-
-        // PROTEGER ADMIN PRINCIPAL
-        if (usuario.getCorreo().equalsIgnoreCase("admin@duoc.cl")) {
-            return ResponseEntity.status(400).body("❌ No puedes eliminar al administrador principal.");
-        }
-
+    try {
         usuarioService.delete(id);
         return ResponseEntity.ok("Usuario eliminado correctamente.");
+
+    } catch (DataIntegrityViolationException e) {
+        // ERROR: usuario tiene órdenes asociadas
+        return ResponseEntity.status(409).body("No se puede eliminar este usuario porque tiene órdenes asociadas.");
     }
+}
 
     // ===============================
     // 3. ACTUALIZAR ROL DE UN USUARIO
